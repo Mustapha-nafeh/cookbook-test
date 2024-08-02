@@ -1,22 +1,31 @@
 import React from "react";
 
 import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom";
 
-const recipes = [
-  {
-    author: "Jim",
-    name: "Chicken Curry",
-    description: "Delicious spicy chicken curry",
-  },
-  {
-    author: "Aravind",
-    name: "Hamburger",
-    description: "Juicy burger with toppings and a soft bun",
-  },
-];
+import { Home, MealDetails, Error, Category } from "./pages/index";
+
+import Header from "./components/Header/Header";
+import Sidebar from "./components/Sidebar/Sidebar";
+
 
 function App() {
-  return <div className="App">Let's add some content here</div>;
+  return (
+    <BrowserRouter>
+      <Header />
+      <Sidebar />
+      <Routes>
+        <Route path = "/" element = {<Home />} />
+        <Route path = "/meal/:id" element = {<MealDetails />} />
+        <Route path = "/meal/category/:name" element = {<Category />} />
+        <Route path  = "*" element = {<Error />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
